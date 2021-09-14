@@ -1,4 +1,4 @@
-# Peek in Pi
+# Peek in Pi [WIP]
 
 ## About
 Rust program that lets you search for any number inside the digits of π.

@@ -1,15 +1,12 @@
-pub fn search(number_to_search: &String, pi: &String) -> Result<u32, String> {
-    let number_to_search_bytes = number_to_search.as_bytes();
-    let pi_bytes = pi.as_bytes();
-
-    'search_inside_pi: for pi_index in 0..pi_bytes.len() {
-        if pi_bytes[pi_index] == number_to_search_bytes[0] {
-            for i in 0..number_to_search_bytes.len() {
-                if number_to_search_bytes[i] != pi_bytes[pi_index + i] {
-                    continue 'search_inside_pi;
+pub fn naive_brute_force_search(pattern: &[u8], text: &[u8]) -> Result<u32, String> {
+    'search_inside_text: for index in 0..text.len() {
+        if text[index] == pattern[0] {
+            for i in 0..pattern.len() {
+                if pattern[i] != text[index + i] {
+                    continue 'search_inside_text;
                 }
             }
-            return Ok(pi_index as u32);
+            return Ok(index as u32);
         }
     }
     Err(String::from("Not found."))
